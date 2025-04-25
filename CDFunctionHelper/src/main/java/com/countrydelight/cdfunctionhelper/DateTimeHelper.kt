@@ -89,7 +89,11 @@ fun getFormattedDateTime(
             val inputDateFormat = SimpleDateFormat(inputFormat, locale)
             val outputDateFormat = SimpleDateFormat(outputFormat, locale)
             val inputDate = inputDateFormat.parse(it)
-            outputDateFormat.format(inputDate)
+            if (inputDate == null) {
+                null
+            } else {
+                outputDateFormat.format(inputDate)
+            }
         }
     }
 }
