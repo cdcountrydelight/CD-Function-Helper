@@ -47,7 +47,7 @@ fun Greeting(name: String?, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         val calender = Calendar.getInstance()
         calender.add(Calendar.DAY_OF_MONTH, -1)
-        Text(readAssetsFile(LocalContext.current, "test.json").ifNull { "cant read" })
+        Text(LocalContext.current.readAssetsFile("test.json").ifNull { "cant read" })
     }
 }
 
