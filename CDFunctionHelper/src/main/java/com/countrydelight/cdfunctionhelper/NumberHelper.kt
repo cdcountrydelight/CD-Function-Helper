@@ -1,5 +1,6 @@
 package com.countrydelight.cdfunctionhelper
 
+import java.text.DecimalFormat
 import java.util.Locale
 
 
@@ -12,7 +13,7 @@ import java.util.Locale
  *         Uses the default locale for formatting.  Returns an empty string if [decimalPlaces] is negative.
  */
 fun Double.toFixedDecimal(decimalPlaces: Int): String {
-    return if (decimalPlaces > 0) {
+    return if (decimalPlaces >= 0) {
         String.format(Locale.getDefault(), "%.${decimalPlaces}f", this)
     } else {
         this.toString()
@@ -29,9 +30,22 @@ fun Double.toFixedDecimal(decimalPlaces: Int): String {
  * @throws IllegalArgumentException if `decimalPlaces` is negative.
  */
 fun Float.toFixedDecimal(decimalPlaces: Int): String {
-    return if (decimalPlaces > 0) {
+    return if (decimalPlaces >= 0) {
         String.format(Locale.getDefault(), "%.${decimalPlaces}f", this)
     } else {
         this.toString()
     }
 }
+
+
+/**
+ * Trims trailing zeros from a Double value and returns it as a String  (for eg 15.000 to 15).
+ *
+ * @return A String representation of the Double with trailing zeros removed.  The number of decimal places will be adjusted to only include significant digits.
+ */
+fun Double.trimZeros(): String {
+    val formatter = DecimalFormat("#.##")
+    formatter.maximumFractionDigits = 340
+    return formatter.format(this)
+}
+

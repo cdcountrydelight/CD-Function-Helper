@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -11,27 +12,28 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.countrydelight.cdfunctionhelper.isTrue
+import androidx.compose.ui.unit.dp
+import com.countrydelight.cdfunctionhelper.ifNull
+import com.countrydelight.cdfunctionhelper.toFormattedString
 import com.countrydelight.cdfuncttionhelperproject.ui.theme.CDFuncttionHelperProjectTheme
+import java.util.Calendar
 
 class MainActivity : ComponentActivity() {
-    var hello: Boolean? = null
-
-    fun test() {
-        if (hello.isTrue()) {
-
-        }
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             CDFuncttionHelperProjectTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                Scaffold(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(16.dp)
+                ) { innerPadding ->
                     Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                        name = null,
+                        modifier = Modifier
+                            .padding(innerPadding)
+                            .fillMaxSize()
                     )
                 }
             }
@@ -40,11 +42,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+fun Greeting(name: String?, modifier: Modifier = Modifier) {
+    Column(modifier = modifier) {
+        val calender = Calendar.getInstance()
+        calender.add(Calendar.DAY_OF_MONTH, -1)
+    }
 }
 
 @Preview(showBackground = true)
