@@ -5,26 +5,6 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-/**
- * Executes a given operation safely, handling potential exceptions.
- *
- * This function takes a lambda expression as input, representing the operation to be performed.
- * It attempts to execute the operation and returns its result.  If any exception occurs during
- * the execution of the operation, the exception is printed to the standard error stream,
- * and `null` is returned.
- *
- * @param operation The lambda expression representing the operation to be performed.  The lambda
- *                  should return a value of type `T`.
- * @return The result of the operation, or `null` if an exception occurred.
- */
-internal fun <T> safeOperation(operation: () -> T): T? {
-    return try {
-        operation()
-    } catch (exception: Exception) {
-        exception.printStackTrace()
-        null
-    }
-}
 
 /**
  * Returns the current time in milliseconds.
