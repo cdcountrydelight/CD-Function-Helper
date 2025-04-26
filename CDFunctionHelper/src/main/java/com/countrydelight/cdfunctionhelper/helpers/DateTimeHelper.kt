@@ -1,5 +1,6 @@
-package com.countrydelight.cdfunctionhelper
+package com.countrydelight.cdfunctionhelper.helpers
 
+import com.countrydelight.cdfunctionhelper.safeOperation
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -9,7 +10,14 @@ import java.util.Locale
 /**
  * Returns the current time in milliseconds.
  */
-fun getCurrentMillis() = System.currentTimeMillis()
+fun getCurrentTimeInMillis() = System.currentTimeMillis()
+
+/**
+ * Gets the current time in seconds since the epoch (January 1, 1970, 00:00:00 UTC).
+ *
+ * @return The current time in seconds as a Long.
+ */
+fun getCurrentTimeInSeconds(): Long = System.currentTimeMillis() / 1000
 
 /**
  * Gets the current date and time formatted according to the specified format and locale.
@@ -209,7 +217,7 @@ fun Date.toFormattedString(format: String, locale: Locale = Locale.getDefault())
  *
  * @return An integer representing the day of the week (1 for Sunday, 2 for Monday, ..., 7 for Saturday).
  */
-fun Date.dayOfWeek(): Int {
+fun Date.getDayOfWeek(): Int {
     val calendar = Calendar.getInstance()
     calendar.time = this
     return calendar.get(Calendar.DAY_OF_WEEK)
@@ -223,8 +231,37 @@ fun Date.dayOfWeek(): Int {
  *
  *  @return An integer representing the day of the week (1 for Sunday, 2 for Monday, ..., 7 for Saturday).
  */
-fun dayOfWeek(): Int {
-    return Date().dayOfWeek()
+fun getCurrentDayOfWeek(): Int {
+    return Date().getDayOfWeek()
+}
+
+/**
+ * Gets the name of the day of the week for this Date object.
+ *
+ * @param format The date format pattern string.  Defaults to "EEEE" (full day name).  See [SimpleDateFormat] for format options.
+ * @param locale The locale to use for formatting the day name. Defaults to the device's default locale.
+ * @return The name of the day of the week as a String, or null if an error occurs.
+ */
+fun Date.getDayOfWeekName(format: String = "EEEE", locale: Locale = Locale.getDefault()): String? {
+    return safeOperation {
+        val dateFormat = SimpleDateFormat(format, locale)
+        dateFormat.format(this)
+    }
+
+}
+
+/**
+ * Gets the current day of the week's name based on the provided format and locale.
+ *
+ * @param format The date format to use for the day of the week.  Defaults to "EEEE" (full name).
+ * @param locale The locale to use for the day of the week name. Defaults to the default locale.
+ * @return The current day of the week's name as a string, or null if an error occurs during formatting.
+ */
+fun getCurrentDayOfWeekName(
+    format: String = "EEEE",
+    locale: Locale = Locale.getDefault()
+): String? {
+    return Date().getDayOfWeekName(format, locale)
 }
 
 /**
@@ -233,7 +270,7 @@ fun dayOfWeek(): Int {
  * @param locale The locale to use for determining the day of the month. Defaults to the device's default locale.
  * @return The day of the month (1-31).
  */
-fun Date.dayOfMonth(locale: Locale = Locale.getDefault()): Int {
+fun Date.getDayOfMonth(locale: Locale = Locale.getDefault()): Int {
     val calendar = Calendar.getInstance(locale)
     calendar.time = this
     return calendar.get(Calendar.DAY_OF_MONTH)
@@ -245,8 +282,8 @@ fun Date.dayOfMonth(locale: Locale = Locale.getDefault()): Int {
  * @param locale The locale to use for date formatting. If not specified, the default locale is used.
  * @return The day of the month (1-31).
  */
-fun dayOfMonth(locale: Locale = Locale.getDefault()): Int {
-    return Date().dayOfMonth(locale)
+fun getCurrentDayOfMonth(locale: Locale = Locale.getDefault()): Int {
+    return Date().getDayOfMonth(locale)
 }
 
 /**
@@ -257,7 +294,7 @@ fun dayOfMonth(locale: Locale = Locale.getDefault()): Int {
  * @param locale The locale to use for determining the month. Defaults to the default locale.
  * @return The month of the year (1-12).
  */
-fun Date.monthOfYear(locale: Locale = Locale.getDefault()): Int {
+fun Date.getMonthOfYear(locale: Locale = Locale.getDefault()): Int {
     val calendar = Calendar.getInstance(locale)
     calendar.time = this
     return (calendar.get(Calendar.MONTH) + 1)
@@ -272,8 +309,35 @@ fun Date.monthOfYear(locale: Locale = Locale.getDefault()): Int {
  * @param locale The locale to use for month formatting. Defaults to the default locale.
  * @return The month of the year (1-based index, where 1 is January and 12 is December).
  */
-fun monthOfYear(locale: Locale = Locale.getDefault()): Int {
-    return Date().monthOfYear(locale)
+fun getCurrentMonthOfYear(locale: Locale = Locale.getDefault()): Int {
+    return Date().getMonthOfYear(locale)
+}
+
+/**
+ * Returns the name of the month for this Date object, formatted according to the specified format and locale.
+ *
+ * @param format The date format pattern to use.  Defaults to "MMMM" (full month name).
+ * @param locale The locale to use for month name localization. Defaults to the default locale.
+ * @return The formatted month name as a String, or null if an exception occurs during formatting.
+ */
+fun Date.getMonthName(format: String = "MMMM", locale: Locale = Locale.getDefault()): String? {
+    return safeOperation {
+        val dateFormat = SimpleDateFormat(format, locale)
+        dateFormat.format(this)
+    }
+}
+
+/**
+ * Gets the name of the current month based on the provided format and locale.
+ *
+ * @param format The date format to use for the month name.  Defaults to "MMMM" (full month name).
+ * @param locale The locale to use for the month name. Defaults to the device's default locale.
+ * @return The name of the current month as a String, or null if an error occurs during the operation.
+ */
+fun getCurrentMonthName(format: String = "MMMM", locale: Locale = Locale.getDefault()): String? {
+    return safeOperation {
+        Date().getMonthName(format, locale)
+    }
 }
 
 /**
@@ -294,9 +358,166 @@ fun Date.year(): Int {
  *
  * @return The current year as an integer.
  */
-fun year(): Int {
+fun getCurrentYear(): Int {
     return Date().year()
 }
+
+/**
+ * Returns the day of the month of the previous day.
+ *
+ * @return The day of the month of the previous day (an integer between 1 and 31).
+ */
+fun Date.getPreviousDay(): Int {
+    val calendar = Calendar.getInstance().apply {
+        time = this@getPreviousDay
+        add(Calendar.DAY_OF_MONTH, -1)
+    }
+    return calendar.get(Calendar.DAY_OF_MONTH)
+}
+
+/**
+ * Returns the previous day's date as an integer.
+ *
+ * @return The day of the month of the previous day (an integer between 1 and 31).
+ */
+fun getPreviousDay(): Int {
+    return Date().getPreviousDay()
+}
+
+/**
+ * Returns the day of the month for the day after this date.
+ *
+ * This function creates a Calendar instance, sets it to this date, adds one day,
+ * and then returns the day of the month from the resulting Calendar.
+ *
+ * @return The day of the month (1-31) for the day after this date.
+ */
+fun Date.getNextDay(): Int {
+    val calendar = Calendar.getInstance().apply {
+        time = this@getNextDay
+        add(Calendar.DAY_OF_MONTH, 1)
+    }
+    return calendar.get(Calendar.DAY_OF_MONTH)
+}
+
+/**
+ * Returns the day of the month for the day after this date.
+ *
+ * This function creates a Calendar instance, sets it to this date, adds one day,
+ * and then returns the day of the month from the resulting Calendar.
+ *
+ * @return The day of the month (1-31) for the day after this date.
+ */
+fun getNextDay(): Int {
+    return Date().getNextDay()
+}
+
+/**
+ * Returns the month (1-12) of the previous month relative to this Date.
+ * Note that the returned month is 1-based (January = 1, February = 2, etc.),
+ *
+ * @return The month (1-12) of the previous month.
+ */
+fun Date.getPreviousMonth(): Int {
+    val calendar = Calendar.getInstance().apply {
+        time = this@getPreviousMonth
+        add(Calendar.MONTH, -1)
+    }
+    return calendar.get(Calendar.MONTH) + 1
+}
+
+/**
+ * Retrieves the previous month's number.
+ *
+ * This method utilizes the current date to determine and return the number representing the previous month.
+ * January is represented as 1, February as 2, and so on.  The returned value will always be between 1 and 12.
+ *
+ * @return An integer representing the previous month (1-12).
+ */
+fun getPreviousMonth(): Int {
+    return Date().getPreviousMonth()
+}
+
+/**
+ * Returns the month number (1-12) of the next month after this date.
+ *
+ * This method takes the current date and calculates the month number of the following month.
+ * The month numbers are 1-based (January = 1, February = 2, ..., December = 12).
+ *
+ * @return The month number (1-12) of the next month.
+ */
+fun Date.getNextMonth(): Int {
+    val calendar = Calendar.getInstance().apply {
+        time = this@getNextMonth
+        add(Calendar.MONTH, 1)
+    }
+    return calendar.get(Calendar.MONTH) + 1
+}
+
+/**
+ * Returns the month number (1-12) of the next month after this date.
+ *
+ * This method takes the current date and calculates the month number of the following month.
+ * The month numbers are 1-based (January = 1, February = 2, ..., December = 12).
+ *
+ * @return The month number (1-12) of the next month.
+ */
+fun getNextMonth(): Int {
+    return Date().getNextMonth()
+}
+
+/**
+ * Returns the year of the date one year prior to this date.
+ *
+ * @return The year of the date one year before this date.
+ */
+fun Date.getPreviousYear(): Int {
+    val calendar = Calendar.getInstance().apply {
+        time = this@getPreviousYear
+        add(Calendar.YEAR, -1)
+    }
+    return calendar.get(Calendar.YEAR)
+}
+
+/**
+ * Returns the previous year based on the current date.
+ *
+ * @return The year before the current year.
+ */
+fun getPreviousYear(): Int {
+    return Date().getPreviousYear()
+}
+
+/**
+ * Returns the year of the date one year after the current date.
+ *
+ * @return The year of the date one year after the current date.
+ */
+fun Date.getNextYear(): Int {
+    val calendar = Calendar.getInstance().apply {
+        time = this@getNextYear
+        add(Calendar.YEAR, 1)
+    }
+    return calendar.get(Calendar.YEAR)
+}
+
+/**
+ * Returns the year of the date one year after the current date.
+ *
+ * @return The year of the date one year after the current date.
+ */
+fun getNextYear(): Int {
+    return Date().getNextYear()
+}
+
+
+
+
+
+
+
+
+
 
 
 

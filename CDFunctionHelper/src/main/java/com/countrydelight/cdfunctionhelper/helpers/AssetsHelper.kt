@@ -1,6 +1,7 @@
-package com.countrydelight.cdfunctionhelper
+package com.countrydelight.cdfunctionhelper.helpers
 
 import android.content.Context
+import com.countrydelight.cdfunctionhelper.safeOperation
 
 
 /**
