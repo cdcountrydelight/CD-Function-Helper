@@ -45,7 +45,6 @@ fun String?.toDoubleOrDefault(default: Double) = this?.toDoubleOrNull() ?: defau
  */
 fun String?.toDoubleOrZero() = this.toDoubleOrDefault(0.0)
 
-
 /**
  * Converts a string to title case, capitalizing the first letter of each word.
  *

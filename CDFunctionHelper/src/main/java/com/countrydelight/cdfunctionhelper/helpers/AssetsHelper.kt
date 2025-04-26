@@ -3,7 +3,6 @@ package com.countrydelight.cdfunctionhelper.helpers
 import android.content.Context
 import com.countrydelight.cdfunctionhelper.safeOperation
 
-
 /**
  * Reads a file from the assets folder.
  *
@@ -17,3 +16,4 @@ fun Context.readAssetsFile(fileName: String, onError: ((e: Exception) -> Unit)? 
         assets.open(fileName).bufferedReader().use { it.readText() }
     }
 }
+

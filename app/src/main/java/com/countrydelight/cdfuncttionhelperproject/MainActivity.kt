@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.countrydelight.cdfunctionhelper.helpers.getNextYear
+import com.countrydelight.cdfunctionhelper.helpers.getPreviousMonthName
 import com.countrydelight.cdfuncttionhelperproject.ui.theme.CDFuncttionHelperProjectTheme
 import java.util.Calendar
 
@@ -45,7 +45,7 @@ fun Greeting(name: String?, modifier: Modifier = Modifier) {
     Column(modifier = modifier) {
         val calender = Calendar.getInstance()
         calender.add(Calendar.DAY_OF_MONTH, -1)
-        Text(getNextYear().toString())
+        Text(getPreviousMonthName().toString())
     }
 }
 

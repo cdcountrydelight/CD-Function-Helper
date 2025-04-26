@@ -13,7 +13,7 @@ import java.util.Locale
 fun getCurrentTimeInMillis() = System.currentTimeMillis()
 
 /**
- * Gets the current time in seconds since the epoch (January 1, 1970, 00:00:00 UTC).
+ * Gets the current time in seconds.
  *
  * @return The current time in seconds as a Long.
  */
@@ -247,7 +247,6 @@ fun Date.getDayOfWeekName(format: String = "EEEE", locale: Locale = Locale.getDe
         val dateFormat = SimpleDateFormat(format, locale)
         dateFormat.format(this)
     }
-
 }
 
 /**
@@ -427,6 +426,38 @@ fun Date.getPreviousMonth(): Int {
 }
 
 /**
+ * Returns the name of the previous month relative to this Date object.
+ *
+ * @param format The date format to use for the month name.  Defaults to "MMMM" (full month name).
+ * @param locale The locale to use for the month name. Defaults to the default locale.
+ * @return The name of the previous month, formatted according to the specified format and locale, or null if an error occurs during the calculation.
+ */
+fun Date.getPreviousMonthName(
+    format: String = "MMMM",
+    locale: Locale = Locale.getDefault()
+): String? {
+    return safeOperation {
+        val calendar = Calendar.getInstance().apply {
+            time = this@getPreviousMonthName
+            add(Calendar.MONTH, -1)
+        }
+        val dateFormat = SimpleDateFormat(format, locale)
+        dateFormat.format(calendar.time)
+    }
+}
+
+/**
+ * Gets the name of the previous month, formatted according to the specified format and locale.
+ *
+ * @param format The desired date format.  Defaults to "MMMM" (full month name).
+ * @param locale The locale to use for formatting the month name. Defaults to the default locale.
+ * @return The name of the previous month formatted according to the given parameters, or null if an error occurs during date processing.
+ */
+fun getPreviousMonthName(format: String = "MMMM", locale: Locale = Locale.getDefault()): String? {
+    return Date().getPreviousMonthName(format, locale)
+}
+
+/**
  * Retrieves the previous month's number.
  *
  * This method utilizes the current date to determine and return the number representing the previous month.
@@ -452,6 +483,36 @@ fun Date.getNextMonth(): Int {
         add(Calendar.MONTH, 1)
     }
     return calendar.get(Calendar.MONTH) + 1
+}
+
+/**
+ * Returns the name of the month following the date represented by this [Date] object.
+ *
+ * @param format The date format string to use.  Defaults to "MMMM" (full month name).
+ * @param locale The locale to use for formatting the month name. Defaults to the default locale.
+ * @return The name of the next month, formatted according to the specified format and locale,
+ *         or null if an error occurs during date manipulation.
+ */
+fun Date.getNextMonthName(format: String = "MMMM", locale: Locale = Locale.getDefault()): String? {
+    return safeOperation {
+        val calendar = Calendar.getInstance().apply {
+            time = this@getNextMonthName
+            add(Calendar.MONTH, 1)
+        }
+        val dateFormat = SimpleDateFormat(format, locale)
+        dateFormat.format(calendar.time)
+    }
+}
+
+/**
+ * Gets the name of the next month, formatted according to the specified format and locale.
+ *
+ * @param format The date format string to use.  Defaults to "MMMM" (full month name).  See [java.text.SimpleDateFormat] for format options.
+ * @param locale The locale to use for formatting. Defaults to the device's default locale.
+ * @return The name of the next month, formatted according to the specified parameters, or null if an error occurs during formatting.
+ */
+fun getNextMontName(format: String = "MMMM", locale: Locale = Locale.getDefault()): String? {
+    return Date().getNextMonthName(format, locale)
 }
 
 /**
@@ -509,6 +570,7 @@ fun Date.getNextYear(): Int {
 fun getNextYear(): Int {
     return Date().getNextYear()
 }
+
 
 
 
