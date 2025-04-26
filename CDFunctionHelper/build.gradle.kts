@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.countrydelight.cdfunctionhelper"
-    compileSdk = 35
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 21
@@ -33,7 +33,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

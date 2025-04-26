@@ -1,4 +1,4 @@
-package com.countrydelight.cdfunctionhelper.helpers
+package com.countrydelight.cdfunctionhelper
 
 import java.text.DecimalFormat
 import java.util.Locale

@@ -1,6 +1,5 @@
-package com.countrydelight.cdfunctionhelper.helpers
+package com.countrydelight.cdfunctionhelper
 
-import com.countrydelight.cdfunctionhelper.safeOperation
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date

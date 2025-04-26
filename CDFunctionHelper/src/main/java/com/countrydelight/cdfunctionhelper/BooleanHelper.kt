@@ -1,4 +1,4 @@
-package com.countrydelight.cdfunctionhelper.helpers
+package com.countrydelight.cdfunctionhelper
 
 /**
  * Checks if this nullable Boolean is true.

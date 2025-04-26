@@ -1,4 +1,4 @@
-package com.countrydelight.cdfunctionhelper.helpers
+package com.countrydelight.cdfunctionhelper
 
 import android.app.Activity
 import android.content.Context

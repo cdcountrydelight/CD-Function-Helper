@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.countrydelight.cdfunctionhelper.helpers.getPreviousMonthName
+import com.countrydelight.cdfunctionhelper.getPreviousMonthName
 import com.countrydelight.cdfuncttionhelperproject.ui.theme.CDFuncttionHelperProjectTheme
 import java.util.Calendar
 

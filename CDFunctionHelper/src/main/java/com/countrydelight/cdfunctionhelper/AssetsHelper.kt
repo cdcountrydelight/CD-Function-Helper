@@ -1,7 +1,6 @@
-package com.countrydelight.cdfunctionhelper.helpers
+package com.countrydelight.cdfunctionhelper
 
 import android.content.Context
-import com.countrydelight.cdfunctionhelper.safeOperation
 
 /**
  * Reads a file from the assets folder.
