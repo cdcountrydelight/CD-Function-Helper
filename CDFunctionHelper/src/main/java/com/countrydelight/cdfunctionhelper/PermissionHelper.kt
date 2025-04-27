@@ -46,7 +46,7 @@ fun Activity.shouldShowPermissionRationale(permission: String): Boolean {
  * @param permissions A list of permissions to check.
  * @return A list of permissions from the input list that are not granted in the current context.  Returns an empty list if all permissions are granted.
  */
-fun Context.notGrantedPermissions(permissions: List<String>): List<String> {
+fun Context.getNotGrantedPermissions(permissions: List<String>): List<String> {
     val notGrantedPermissions = arrayListOf<String>()
     permissions.forEach { permission ->
         if (isPermissionNotGranted(permission)) {

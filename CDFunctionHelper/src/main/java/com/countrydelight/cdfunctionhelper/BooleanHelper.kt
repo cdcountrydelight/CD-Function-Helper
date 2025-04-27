@@ -1,15 +1,14 @@
 package com.countrydelight.cdfunctionhelper
 
-/**
- * Checks if this nullable Boolean is true.
- *
- * @return `true` if this Boolean is not null and is equal to `true`; otherwise, `false`.
- */
-fun Boolean?.isTrue() = this == true
 
 /**
- * Checks if this boolean value is false.
- *
- * @return True if this value is `false`, false otherwise.  Returns `false` if this is null.
+ * Returns `true` if the Boolean is `null`, otherwise returns the Boolean's value.
+ * Useful for avoiding null checks when a default of `true` is desired.
  */
-fun Boolean?.isFalse() = this == false
+fun Boolean?.orTrue() = this ?: true
+
+/**
+ * Returns `false` if the Boolean is `null`, otherwise returns the Boolean's value.
+ * Useful for avoiding null checks when a default of `false` is desired.
+ */
+fun Boolean?.orFalse() = this ?: false

@@ -570,16 +570,3 @@ fun Date.getNextYear(): Int {
 fun getNextYear(): Int {
     return Date().getNextYear()
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

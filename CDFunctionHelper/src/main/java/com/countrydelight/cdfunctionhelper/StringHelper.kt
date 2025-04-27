@@ -107,3 +107,13 @@ fun String?.ifNullOrEmpty(defaultValue: () -> String): String {
     return if (this.isNullOrEmpty()) defaultValue() else this
 }
 
+/**
+ * Checks if the string is a valid URL containing with "http://" or "https://".
+ *
+ * @return `true` if the string is a valid URL format, `false` if it is null, blank, or does not match the pattern.
+ */
+fun String?.isUrl(): Boolean {
+    if (this.isNullOrBlank()) return false
+    val urlPattern = "^(http|https)://.*$"
+    return Regex(urlPattern).matches(this.trim())
+}
