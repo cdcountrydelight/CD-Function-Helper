@@ -11,9 +11,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.countrydelight.cdfunctionhelper.getPreviousMonthName
+import com.countrydelight.cdfunctionhelper.readJsonFile
 import com.countrydelight.cdfuncttionhelperproject.ui.theme.CDFuncttionHelperProjectTheme
 import java.util.Calendar
 
@@ -42,10 +43,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String?, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
     Column(modifier = modifier) {
         val calender = Calendar.getInstance()
         calender.add(Calendar.DAY_OF_MONTH, -1)
-        Text(getPreviousMonthName().toString())
+        Text(context.readJsonFile("user.json", User::class.java) {
+            it.printStackTrace()
+        }.toString())
     }
 }
 

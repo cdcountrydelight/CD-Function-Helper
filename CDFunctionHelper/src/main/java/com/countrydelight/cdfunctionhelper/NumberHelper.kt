@@ -38,7 +38,7 @@ fun Float.toFixedDecimal(decimalPlaces: Int): String {
 }
 
 /**
- * Trims trailing zeros from a Double value and returns it as a String  (for eg 15.000 to 15, 15.10 to 15.1).
+ * Trims trailing zeros from a Double value and returns it as a String (for eg 15.000 to 15, 15.10 to 15.1).
  *
  * @return A String representation of the Double with trailing zeros removed.  The number of decimal places will be adjusted to only include significant digits.
  */

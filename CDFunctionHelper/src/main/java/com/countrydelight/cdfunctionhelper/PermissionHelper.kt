@@ -24,7 +24,7 @@ fun Context.isPermissionGranted(permission: String): Boolean {
  * @return `true` if the permission is not granted; `false` otherwise.
  */
 fun Context.isPermissionNotGranted(permission: String): Boolean {
-    return !isPermissionGranted(permission)
+    return ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_DENIED
 }
 
 /**
@@ -38,4 +38,20 @@ fun Context.isPermissionNotGranted(permission: String): Boolean {
  */
 fun Activity.shouldShowPermissionRationale(permission: String): Boolean {
     return ActivityCompat.shouldShowRequestPermissionRationale(this, permission)
+}
+
+/**
+ * Returns a list of permissions from the given list that are not granted in the current context.
+ *
+ * @param permissions A list of permissions to check.
+ * @return A list of permissions from the input list that are not granted in the current context.  Returns an empty list if all permissions are granted.
+ */
+fun Context.notGrantedPermissions(permissions: List<String>): List<String> {
+    val notGrantedPermissions = arrayListOf<String>()
+    permissions.forEach { permission ->
+        if (isPermissionNotGranted(permission)) {
+            notGrantedPermissions.add(permission)
+        }
+    }
+    return notGrantedPermissions
 }

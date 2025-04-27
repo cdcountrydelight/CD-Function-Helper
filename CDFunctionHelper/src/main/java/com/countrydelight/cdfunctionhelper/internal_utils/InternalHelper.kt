@@ -1,4 +1,7 @@
-package com.countrydelight.cdfunctionhelper
+package com.countrydelight.cdfunctionhelper.internal_utils
+
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 
 
 /**
@@ -10,7 +13,6 @@ package com.countrydelight.cdfunctionhelper
  * @param <T> The type of the result returned by the operation.
  * @return The result of the operation if successful; otherwise, null.
  *
- * @throws SecurityException if the security manager exists and its checkPermission method doesn't allow access to the operation.
  */
 internal fun <T> safeOperation(onException: ((Exception) -> Unit)? = null, operation: () -> T): T? {
     return try {
@@ -23,4 +25,20 @@ internal fun <T> safeOperation(onException: ((Exception) -> Unit)? = null, opera
         }
         null
     }
+}
+
+
+/**
+ * Returns a Moshi instance configured with a KotlinJsonAdapterFactory.
+ *
+ * This method creates a new Moshi builder, adds the KotlinJsonAdapterFactory for handling Kotlin data classes,
+ * and then builds and returns the Moshi instance.  This ensures proper serialization and deserialization
+ * of Kotlin objects.
+ *
+ * @return A Moshi instance configured with a KotlinJsonAdapterFactory.
+ */
+internal fun getMoshiInstance(): Moshi {
+    return Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 }

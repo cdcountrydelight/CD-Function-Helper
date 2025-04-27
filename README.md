@@ -8,6 +8,8 @@ CDFunctionHelper saves developers time by offering clean, reusable helper functi
 ![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
 ![API Level](https://img.shields.io/badge/API-21+-blue.svg)
 ![Language](https://img.shields.io/badge/Language-Kotlin-orange.svg)
+![JSON Parser](https://img.shields.io/badge/Parser-Moshi-brightgreen.svg)
+
 
 ---
 
