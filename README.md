@@ -1,31 +1,34 @@
 # CD Function Helper
 
-**CD Function Helper** is a lightweight Android library that provides a collection of **handy utility functions** for common everyday tasks.
+**CD Function Helper** is a lightweight Android library that provides a collection of **handy
+utility functions** for common everyday tasks.
 
-Whether it's working with **Dates**, **Strings**, **Numbers**, **Assets**, **Permissions**, or **Booleans**,  
+Whether it's working with **Dates**, **Strings**, **Numbers**, **Assets**, **Permissions**, or *
+*Booleans**,  
 CDFunctionHelper saves developers time by offering clean, reusable helper functions.
 
 ![Platform](https://img.shields.io/badge/Platform-Android-green.svg)
 ![API Level](https://img.shields.io/badge/API-21+-blue.svg)
 ![Language](https://img.shields.io/badge/Language-Kotlin-orange.svg)
-![JSON Parser](https://img.shields.io/badge/Serialization/Deserialization-Moshi-brightgreen.svg)
+![Moshi](https://img.shields.io/badge/Moshi-1.15.0-brightgreen.svg)
+[![](https://jitpack.io/v/cdcountrydelight/CD-Function-Helper.svg)](https://jitpack.io/#cdcountrydelight/CD-Function-Helper)
 
 
 ---
 
 ## ✨ Features
 
-- 📦 **AssetsHelper** [🔗](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/path/to/AssetsHelper.kt)
+- 📦 **AssetsHelper ** [🔗](https://github.com/cdcountrydelight/CD-Function-Helper/blob/master/CDFunctionHelper/src/main/java/com/countrydelight/cdfunctionhelper/AssetsHelper.kt)
   - Read and parse asset files easily into Strings or classes (using Moshi).
-- 🛡️ **PermissionHelper** [🔗](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/path/to/PermissionHelper.kt)
+- 🛡️ **PermissionHelper** [🔗](https://github.com/cdcountrydelight/CD-Function-Helper/blob/master/CDFunctionHelper/src/main/java/com/countrydelight/cdfunctionhelper/PermissionHelper.kt)
   - Check permission states and show rationales quickly.
-- 🗓️ **DateTimeHelper** [🔗](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/path/to/DateTimeHelper.kt)
+- 🗓️ **DateTimeHelper** [🔗](https://github.com/cdcountrydelight/CD-Function-Helper/blob/master/CDFunctionHelper/src/main/java/com/countrydelight/cdfunctionhelper/DateTimeHelper.kt)
   - Easy date formatting, previous/next day or month calculations, etc.
-- 🔢 **NumberHelper** [🔗](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/path/to/NumberHelper.kt)
+- 🔢 **NumberHelper** [🔗](https://github.com/cdcountrydelight/CD-Function-Helper/blob/master/CDFunctionHelper/src/main/java/com/countrydelight/cdfunctionhelper/NumberHelper.kt)
   - Simple number formatting and conversion utilities.
-- 🔤 **StringHelper** [🔗](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/path/to/StringHelper.kt)
+- 🔤 **StringHelper** [🔗](https://github.com/cdcountrydelight/CD-Function-Helper/blob/master/CDFunctionHelper/src/main/java/com/countrydelight/cdfunctionhelper/StringHelper.kt)
   - String validation, formatting, and more.
-- ✅ **BooleanHelper** [🔗](https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/path/to/BooleanHelper.kt)
+- ✅ **BooleanHelper** [🔗](https://github.com/cdcountrydelight/CD-Function-Helper/blob/master/CDFunctionHelper/src/main/java/com/countrydelight/cdfunctionhelper/BooleanHelper.kt)
   - Handy extensions for Boolean operations.
 
 ---
@@ -50,15 +53,16 @@ CDFunctionHelper saves developers time by offering clean, reusable helper functi
 2. Add the dependency to your `build.gradle` file (module-level):
     ```gradle
     dependencies {
-        implementation 'com.github.YOUR_GITHUB_USERNAME:CDPreferenceHelper:VERSION'
+        implementation ("com.github.cdcountrydelight:CD-Function-Helper:<latest-version>")
     }
    ```
 ---
 
-**CD Function Helper** is built to help developers focus more on building features rather than writing repetitive utility code.
+✅ **Note**:  
+You **do not** need to add the `com.squareup.moshi:moshi` and `com.squareup.moshi:moshi-kotlin` dependency manually to your project.  
+It is already included and exposed by the library, so you can easily access the `Moshi` without any extra setup.
 
 Feel free to contribute, suggest improvements, and open PRs! 🚀
-
 
 # 👏 Happy Coding!
 
